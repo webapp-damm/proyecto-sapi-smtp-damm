@@ -2,7 +2,7 @@ FROM openjdk:8
 
 USER root
 RUN mkdir /opt/tools /aplicaciones /deployments \
-    && wget -i "https://prodwemulesoftsa01.blob.core.windows.net/mulesoft/core/urls.txt?sp=r&st=2022-04-21T09:56:35Z&se=2032-04-21T17:56:35Z&spr=https&sv=2020-08-04&sr=b&sig=2wcchwvIvoVV2wY80xRr39KpWzXGdZKDakzOYqAEeYs%3D" \
+    && wget -i "https://intwemulesoftsa01.blob.core.windows.net/mulesoft/core/urls.txt?sp=r&st=2022-04-21T09:49:52Z&se=2032-04-21T17:49:52Z&spr=https&sv=2020-08-04&sr=b&sig=V0qFkTdgWLJiEBj6fg8zeqbpfsE%2FyLtyg6Jr5kXG4rs%3D" \
     && rm url* \
     && mv components* components.zip \
     && mv am* am.zip \
