@@ -1,0 +1,17 @@
+apiPath: "/<nombreProyecto>/api/v1/*"
+
+autodiscoveryID : ${AUTODISCOVERY_ID}
+
+standard:
+   port:
+      external: "8081"
+      internal: "8091"
+      
+api_level-api_name:
+ path: ""
+ host: ""
+ credentials:
+  client_id: ""
+  client_secret: ""
+ endpoints:
+  endpoint_name: ""

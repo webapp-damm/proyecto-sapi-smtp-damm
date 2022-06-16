@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:email="http://www.mulesoft.org/schema/mule/email"
+	xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd 
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+    <apikit:config name="healthcheck-config" api="api\healthcheck.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+	<apikit:config name="sapi-smtp-damm-config" api="resource::0994ed66-9d28-4904-8231-74516966ecdd:sapi-smtp-damm:1.0.0:raml:zip:sapi-smtp-damm.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+	<configuration doc:name="Configuration" doc:id="69deda10-14cd-43be-af70-f529b48f4359" defaultErrorHandler-ref="Global_Error_Handler" />
+	<configuration-properties doc:name="Configuration properties" doc:id="8f76d0d4-1d6c-4cb8-a8a3-6764a1ed61c0" file="config\properties_${env}.yaml" />
+	<http:listener-config name="HTTP_Listener_config_standard" doc:name="HTTP Listener config" doc:id="e1a5ae2a-1333-4c14-9977-de974dea1f97" >
+		<http:listener-connection host="0.0.0.0" port="${standard.port.external}" />
+	</http:listener-config>
+	<global-property doc:name="Global Property" doc:id="6f6a688d-cb7a-4cfe-ac67-b2a06114d344" name="env" value="des" />
+	<global-property doc:name="Global Property" doc:id="f64db652-57ce-498d-b56d-8c0cb7d3e64b" name="secure.key" value="FXm68gGGnJzn" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="5b5dca78-b348-4474-97bf-9380d46fd3fa" file="config\properties_${env}.yaml" key="${secure.key}" >
+		<secure-properties:encrypt algorithm="Blowfish" />
+	</secure-properties:config>
+	<email:smtp-config name="Email_SMTP" doc:name="Email SMTP" doc:id="90620087-376c-4adf-9963-e8cdb70fe7dd" >
+		<email:smtp-connection host="${smtp.host}" port="${smtp.port}" />
+	</email:smtp-config>
+</mule>
+
