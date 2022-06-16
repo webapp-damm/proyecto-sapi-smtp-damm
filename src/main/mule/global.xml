@@ -26,6 +26,6 @@ http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/sc
 	<email:smtp-config name="Email_SMTP" doc:name="Email SMTP" doc:id="90620087-376c-4adf-9963-e8cdb70fe7dd" >
 		<email:smtp-connection host="${smtp.host}" port="${smtp.port}" />
 	</email:smtp-config>
-	<api-gateway:autodiscovery apiId="${autodiscoveryID}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="7a3f0c00-83ce-4278-9b5a-3f97f00b5054" flowRef="sapi-smtp-damm-main" />
+	<!--  api-gateway:autodiscovery apiId="${autodiscoveryID}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="7a3f0c00-83ce-4278-9b5a-3f97f00b5054" flowRef="sapi-smtp-damm-main" /-->
 </mule>
 
