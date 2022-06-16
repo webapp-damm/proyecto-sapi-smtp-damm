@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: sapi-smtp-dev-runtime-damm-secret
+  name: sapi-smtp-runtime-damm-secret
 type: Opaque
 data:
   accAPI: aHR0cHM6Ly9ldTEuYW55cG9pbnQubXVsZXNvZnQuY29tL2FjY291bnRz
@@ -9,21 +9,21 @@ data:
   password: Sm9yZGlnYXJjaWEwMQ==
   username: Sm9yZGlHYXJjaWFfREFNTQ==
   organization: REFNTQ==
-  environment: REVW
+  environment: UFJP
   namespace: REFNTQ==
   servername: U0FQSS1TTVRQLURBTU0=
-  AUTODISCOVERY_ID: MTIzNDU=
+  AUTODISCOVERY_ID: MzIxNTQ=
   
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sapi-smtp-dev-runtime-damm
+  name: sapi-smtp-runtime-damm
 spec:
   selector:
     matchLabels:
-      app: sapi-smtp-dev-runtime-damm
+      app: sapi-smtp-runtime-damm
   replicas: 1
   strategy:
     type: RollingUpdate
@@ -33,20 +33,20 @@ spec:
   template:
     metadata:
       labels:
-        app: sapi-smtp-dev-runtime-damm
+        app: sapi-smtp-runtime-damm
     spec:
       containers:
-      - name: sapi-smtp-dev-runtime-damm
+      - name: sapi-smtp-runtime-damm
         image: 
         envFrom:
         - secretRef:
-            name: sapi-smtp-dev-runtime-damm-secret
+            name: sapi-smtp-runtime-damm-secret
         ports:
         - containerPort: 8081
         resources:
           limits:
             cpu:  1000m
-            memory: 2048Mi
+            memory: 4096Mi
           requests:
             cpu:  500m
             memory: 2048Mi
@@ -62,31 +62,31 @@ spec:
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: sapi-smtp-dev-runtime-damm-autoescaler
+  name: sapi-smtp-runtime-damm-autoescaler
 spec:
-  maxReplicas: 1
+  maxReplicas: 3
   minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: sapi-smtp-dev-runtime-damm
+    name: sapi-smtp-runtime-damm
   metrics:
   - type: Resource
     resource:
       name: memory
       target:
         type: AverageValue
-        averageValue: 1800Mi
+        averageValue: 3500Mi
         
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: sapi-smtp-dev-runtime-damm-service
+  name: sapi-smtp-runtime-damm-service
 spec:
   selector:
-    app: sapi-smtp-dev-runtime-damm
+    app: sapi-smtp-runtime-damm
   ports:
   - protocol: TCP
     port: 80
