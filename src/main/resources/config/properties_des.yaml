@@ -10,12 +10,6 @@ standard:
 smtp:
   host: "172.23.22.37"
   port: "25"
-            
-api_level-api_name:
- path: ""
- host: ""
- credentials:
-  client_id: ""
-  client_secret: ""
- endpoints:
-  endpoint_name: ""
+
+list_mails_from: "info_swf;"            
+                                    
