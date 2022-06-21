@@ -30,6 +30,9 @@ output application/json
 			</ee:message>
 		</ee:transform>
 			</when>
+			<otherwise >
+				<raise-error doc:name="Raise error" doc:id="425b7e44-5cb4-4d3b-838a-6e8e9a2c9c19" type="MAIL:NOT_FOUND"/>
+			</otherwise>
 		</choice>
 		<logger level="INFO" doc:name="Logger" doc:id="06e1c602-b9e6-4658-be14-d87fb0f857aa" message='#["End flow " ++ flow.name]'/>
 	</sub-flow>
