@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	<sub-flow name="send_mail-implementationSub_Flow" doc:id="9acf8074-c05c-4be2-9d10-e106d42baba4" >
 		<logger level="INFO" doc:name="Logger" doc:id="bdb481bd-b32b-4717-b552-6ff9c82c88c1" message='#["Start flow " ++ flow.name]'/>
 		<choice doc:name="Choice" doc:id="ce680acf-e8be-4c15-b412-abdefe2f6034" >
-			<when expression="#[!isEmpty (p('list_mails_from') find attributes.headers.from)]">
+			<when expression="#[!isEmpty ((p('list_mails_from') splitBy(';')) find attributes.headers.from)]">
 				<set-variable value="#[attributes.headers.to splitBy(';')]" doc:name="Set Variable" doc:id="4ce12eb5-0fea-4fcf-8233-0996a58aac56" variableName="mails_to" />
 				<email:send doc:name="Send" doc:id="9a00cae1-58a6-4666-a330-a6601524d30f" config-ref="Email_SMTP" toAddresses="#[vars.mails_to]" fromAddress='#[attributes.headers.from ++ "@damm.es"]' subject="#[payload.subject]">
 			<email:body contentType="text/plain">
