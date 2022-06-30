@@ -25,8 +25,10 @@
         <apikit:console config-ref="sapi-smtp-damm-config" />
     </flow>
     <flow name="post:\mail:application\json:sapi-smtp-damm-config">
-		<logger level="INFO" doc:name="Logger" doc:id="7c580c19-ad63-4517-8328-83efa78559a7" message='#["Start flow " ++ flow.name]' />
-		<flow-ref doc:name="Flow Reference" doc:id="166d1ba0-4bd9-4ac3-9fa8-8e94adc7679b" name="send_mail-implementationSub_Flow" />
-		<logger level="INFO" doc:name="Logger" doc:id="ee67775f-e3bf-4430-927d-45c597c7843b" message='#["End flow " ++ flow.name]' />
+
+		<logger level="INFO" doc:name="Logger" doc:id="95b6d52a-25b4-467b-94ec-007953862778" message='#["Start flow " ++ flow.name]'/>
+		<flow-ref doc:name="Flow Reference" doc:id="f6d33bc4-8d71-4853-9f5b-321db978bfdd" name="send_mail-implementationSub_Flow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="4dfe73f5-9b27-452b-9258-344fc95d47b7" message='#["End flow " ++ flow.name]'/>
+
     </flow>
 </mule>

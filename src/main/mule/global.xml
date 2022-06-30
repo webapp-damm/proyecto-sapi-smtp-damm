@@ -18,7 +18,7 @@ http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/sc
 	<http:listener-config name="HTTP_Listener_config_standard" doc:name="HTTP Listener config" doc:id="e1a5ae2a-1333-4c14-9977-de974dea1f97" >
 		<http:listener-connection host="0.0.0.0" port="${standard.port.external}" />
 	</http:listener-config>
-	<global-property doc:name="Global Property" doc:id="6f6a688d-cb7a-4cfe-ac67-b2a06114d344" name="env" value="des" />
+	<global-property doc:name="Global Property" doc:id="6f6a688d-cb7a-4cfe-ac67-b2a06114d344" name="env" value="pro" />
 	<global-property doc:name="Global Property" doc:id="f64db652-57ce-498d-b56d-8c0cb7d3e64b" name="secure.key" value="FXm68gGGnJzn" />
 	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="5b5dca78-b348-4474-97bf-9380d46fd3fa" file="config\properties_${env}.yaml" key="${secure.key}" >
 		<secure-properties:encrypt algorithm="Blowfish" />
@@ -26,5 +26,6 @@ http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/sc
 	<email:smtp-config name="Email_SMTP" doc:name="Email SMTP" doc:id="90620087-376c-4adf-9963-e8cdb70fe7dd" >
 		<email:smtp-connection host="${smtp.host}" port="${smtp.port}" />
 	</email:smtp-config>
+	<api-gateway:autodiscovery apiId="${autodiscoveryID}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="7a3f0c00-83ce-4278-9b5a-3f97f00b5054" flowRef="sapi-smtp-damm-main" />
 </mule>
 

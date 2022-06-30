@@ -182,13 +182,30 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 			</ee:transform>
 			<set-variable value="#[payload.code]" doc:name="Set StatusCode" doc:id="10e633e0-fce6-47ad-8161-c38b6e638bc0" variableName="httpStatus" />
 		</on-error-propagate>
-		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="61d48ece-4562-4ab2-b781-07bad2728ec6">
-			<ee:transform doc:name="Error" doc:id="e3577752-1f5e-44b4-a5f7-ccd3e39cae95" >
+		
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="8d9a52bd-8852-46e6-aab7-c9b346926628" type="MAIL:NOT_FOUND">
+			<ee:transform doc:name="Error" doc:id="d947d757-9b53-4388-8dd9-92ccec48449f" >
+				<ee:message >
+					<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+    code: "404",
+    message:  "Mail FROM not found",
+    raw:  error.description  as String default ""
+}
+]]></ee:set-payload>
+				</ee:message>
+			</ee:transform>
+			<set-variable value="#[payload.code]" doc:name="Set StatusCode" doc:id="af6721ef-9974-4c3d-a2bd-02ff76729607" variableName="httpStatus"/>
+		</on-error-propagate>
+		<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="1a672a01-ddfb-43c2-80a6-6e265d85e8bb">
+			<ee:transform doc:name="Error" doc:id="63cb987b-8db8-4d5e-a443-8ef77ef19095" >
 				<ee:message >
 					<ee:set-payload resource="http_500_internal_server_error.dwl" />
 				</ee:message>
 			</ee:transform>
-			<set-variable value="#[payload.code]" doc:name="Set StatusCode" doc:id="2651a46d-38af-43c5-858e-016a2deafe17" variableName="httpStatus" />
+			<set-variable value="#[payload.code]" doc:name="Set StatusCode" doc:id="3c1c691c-d338-421e-8242-06cf87117477" variableName="httpStatus" />
 		</on-error-propagate>
 	</error-handler>	
 	
