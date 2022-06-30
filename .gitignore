@@ -43,6 +43,10 @@ src/main/api/.repository/
 catalog/
 bin/
 /reports
+deployment.yaml
+dockerfile
+ingress.yaml
+Jenkinsfile
 # ---------------------------------------------------------------------------- #
 #       Maven Wrapper                                                          #
 # ---------------------------------------------------------------------------- #
